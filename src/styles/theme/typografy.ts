@@ -7,15 +7,13 @@ import {TypographyOptions} from '@mui/material/styles/createTypography';
 // xl, extra-large: 1536px
 
 export const typografy: TypographyOptions = {
+  h1: {
+    fontSize: '3rem',
+    fontWeight: 'bold',
+  },
   h3: {
     fontSize: '1.7rem',
     fontWeight: 'bold',
-    // '@media (min-width:600px)': {
-    //   fontSize: '1.5rem',
-    // },
-    // [theme.breakpoints.up('md')]: {
-    //   fontSize: '2.5rem',
-    // },
   },
   h6: {
     fontSize: '1.3rem',
@@ -30,5 +28,13 @@ export const typografy: TypographyOptions = {
   subtitle1: {
     fontSize: '1.3rem',
     fontWeight: '600',
+  },
+  body1: {
+    fontSize: '1.2rem',
+    fontWeight: 'normal',
+  },
+  body2: {
+    fontSize: '1rem',
+    fontWeight: 'lighter',
   },
 };

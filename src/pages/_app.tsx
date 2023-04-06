@@ -8,10 +8,12 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import {Provider} from 'react-redux';
+import {store} from '@/redux/store';
 
 const App = ({Component, pageProps}: AppProps) => {
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>RicardoDev</title>
         <meta name="description" content="Crypto currency tracker" />
@@ -25,7 +27,7 @@ const App = ({Component, pageProps}: AppProps) => {
           <Component {...pageProps} />
         </main>
       </ThemeProvider>
-    </>
+    </Provider>
   );
 };
 

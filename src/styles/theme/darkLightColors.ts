@@ -15,14 +15,14 @@ export const darkLightColors = (mode?: PaletteMode) => {
   const palette: PaletteOptions = {
     mode: mode,
     primary: {
-      main: '#0065FF',
+      main: mode === 'dark' ? '#0C9EE8' : '#0065FF',
     },
     secondary: {
       main: '#8000FF',
       light: 'rgba(154,15,140,.54)',
     },
     background: {
-      default: mode === 'dark' ? '#666' : '#FFF',
+      default: mode === 'dark' ? '#14161A' : '#FFF',
       paper: mode === 'dark' ? '#000' : '#FFF',
     },
     // custom: {
