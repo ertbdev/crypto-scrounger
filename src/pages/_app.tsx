@@ -1,6 +1,32 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import Head from 'next/head';
+import ThemeProvider from '@/providers/ThemeProvider';
+import Navbar from '@/components/Navbar';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+import type {AppProps} from 'next/app';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+const App = ({Component, pageProps}: AppProps) => {
+  return (
+    <>
+      <Head>
+        <title>RicardoDev</title>
+        <meta name="description" content="Crypto currency tracker" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Ricardo Toledo"></meta>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <ThemeProvider>
+        <main>
+          <Navbar />
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
+    </>
+  );
+};
+
+export default App;
