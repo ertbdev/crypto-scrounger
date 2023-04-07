@@ -55,7 +55,7 @@ const Navbar = () => {
       <AppBar
         component="nav"
         position="fixed"
-        sx={{px: {xs: 4, sm: 6, md: 15}, zIndex: theme => theme.zIndex.drawer + 1}}
+        sx={{px: {xs: 1, sm: 6, md: 15}, zIndex: theme => theme.zIndex.drawer + 1}}
         color="transparent">
         <Toolbar sx={{justifyContent: 'space-between'}}>
           <Grid

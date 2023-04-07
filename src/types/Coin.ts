@@ -2,7 +2,7 @@ export type Coin = {
   id: string;
   symbol: string;
   name: string;
-  image: string;
+  image?: {large: string; small: string; thumb: string} | string;
   current_price: number;
   market_cap: number;
   market_cap_rank: number;

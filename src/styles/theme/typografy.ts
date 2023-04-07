@@ -8,12 +8,31 @@ import {TypographyOptions} from '@mui/material/styles/createTypography';
 
 export const typografy: TypographyOptions = {
   h1: {
-    fontSize: '3rem',
     fontWeight: 'bold',
+    '@media (min-width:0px)': {
+      fontSize: '2rem',
+    },
+    '@media (min-width:320px)': {
+      fontSize: '2.2rem',
+    },
+    '@media (min-width:420px)': {
+      fontSize: '2.8rem',
+    },
+    '@media (min-width:600px)': {
+      fontSize: '3rem',
+    },
   },
   h3: {
-    fontSize: '1.7rem',
     fontWeight: 'bold',
+    '@media (min-width:0px)': {
+      fontSize: '1rem',
+    },
+    '@media (min-width:320px)': {
+      fontSize: '1.2rem',
+    },
+    '@media (min-width:500px)': {
+      fontSize: '1.7rem',
+    },
   },
   h6: {
     fontSize: '1.3rem',
