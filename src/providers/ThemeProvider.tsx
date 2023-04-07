@@ -1,9 +1,8 @@
 import {createContext, useContext, useEffect, useMemo, useState} from 'react';
 import {ThemeProvider as MuiThemeProvider, createTheme} from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {darkLightColors} from '@/styles/theme/darkLightColors';
-import {PaletteMode} from '@mui/material';
+import {CssBaseline, GlobalStyles, PaletteMode} from '@mui/material';
 import {typografy} from '@/styles/theme/typografy';
 
 type Theme = 'dark' | 'light';
@@ -49,7 +48,9 @@ export default function ThemeProvider({children}: {children: JSX.Element}) {
   return (
     <context.Provider value={contextValue}>
       <MuiThemeProvider theme={theme}>
-        <CssBaseline /> {children}
+        <CssBaseline />
+        <GlobalStyles styles={{a: {color: theme.palette.primary.main}}} />
+        {children}
       </MuiThemeProvider>
     </context.Provider>
   );

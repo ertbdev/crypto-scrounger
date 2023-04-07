@@ -3,7 +3,7 @@ import {getNumberWithCommas} from '@/functions/getNumberWithCommas';
 import {useDispatch, useSelector} from '@/hooks/redux';
 import {fetchTrendingCoins} from '@/redux/coinsSlice';
 import CarouselItemContainer from '@/styles/styledComponents/CarouselItemContainer';
-import {Coin} from '@/types/Coin';
+import {Coin, CoinDigest} from '@/types/Coin';
 import {Grid, Typography} from '@mui/material';
 import Image from 'next/image';
 import React, {useEffect} from 'react';
@@ -23,7 +23,7 @@ const Carousel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-  const CoinItem = ({data}: {data?: Coin}) => {
+  const CoinItem = ({data}: {data?: CoinDigest}) => {
     if (!data) {
       return null;
     }
@@ -31,9 +31,8 @@ const Carousel = () => {
     const profit = data.price_change_percentage_24h >= 0;
 
     return (
-      <CarouselItemContainer href={`/coins/${data.id}`}>
+      <CarouselItemContainer href={`/coin/${data.id}`}>
         <Image src={data.image} alt={data.name} height={80} width={80} />
-
         <Grid display="flex" alignItems="center" sx={{mt: 2}}>
           <Typography variant="body1">{data.symbol} &nbsp;</Typography>
           <Typography color={profit ? 'success.main' : 'error.main'}>
@@ -49,7 +48,7 @@ const Carousel = () => {
   };
 
   return (
-    <Grid sx={{maxWidth: '100vw'}}>
+    <Grid sx={{width: '100vw'}}>
       <AliceCarousel
         mouseTracking
         infinite

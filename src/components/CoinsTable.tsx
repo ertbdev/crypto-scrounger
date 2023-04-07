@@ -17,10 +17,11 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import {Coin} from '@/types/Coin';
+import {Coin, CoinDigest} from '@/types/Coin';
 import Image from 'next/image';
 import {CurrencySymbol} from '@/constants/currency';
 import {getNumberWithCommas} from '@/functions/getNumberWithCommas';
+import {useRouter} from 'next/router';
 
 const CoinsTable = () => {
   const [loading, setLoading] = useState(false);
@@ -31,9 +32,11 @@ const CoinsTable = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [visibleCoins, setVisibleCoins] = useState<Coin[]>([]);
+  const [visibleCoins, setVisibleCoins] = useState<CoinDigest[]>([]);
 
   const tableRef = useRef<HTMLElement>(null);
+
+  const router = useRouter();
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - coins.length) : 0;
@@ -47,6 +50,10 @@ const CoinsTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
     tableRef.current && window.scrollTo(0, tableRef.current.offsetTop - 150);
+  };
+
+  const handleGoToCoin = (id: string) => {
+    router.push(`/coin/${id}`);
   };
 
   useEffect(() => {
@@ -80,10 +87,16 @@ const CoinsTable = () => {
             </TableHead>
             <TableBody>
               {visibleCoins.map(coin => (
-                <TableRow hover key={coin.id} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                <TableRow
+                  onClick={() => {
+                    coin.id && handleGoToCoin(coin.id);
+                  }}
+                  hover
+                  key={coin.id}
+                  sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                   <TableCell component="th" scope="row">
                     <Grid sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                      {typeof coin.image === 'string' ? <Image src={coin.image} alt={coin.name} height={50} width={50} /> : null}
+                      <Image src={coin.image} alt={coin.name} height={50} width={50} />
                       <Grid sx={{display: 'flex', flexDirection: 'column', ml: 2}}>
                         <Typography variant="body1">{coin.symbol}</Typography>
                         <Typography variant="body2">{coin.name}</Typography>
