@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['assets.coingecko.com'],
     unoptimized: true,
+    minimumCacheTTL: 120,
   },
 };
 

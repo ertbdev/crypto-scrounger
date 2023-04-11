@@ -1,45 +1,18 @@
-import {
-  AppBar,
-  Box,
-  FormControl,
-  IconButton,
-  InputLabel,
-  Link,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  SwipeableDrawer,
-  Toolbar,
-  Typography,
-} from '@mui/material';
-import {Brightness4, Brightness7, Menu} from '@mui/icons-material';
+import {AppBar, Box, FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, Toolbar, Typography} from '@mui/material';
+import {Brightness4, Brightness7} from '@mui/icons-material';
 import {useThemeContext} from '@/providers/ThemeProvider';
-import {useState} from 'react';
 import {Currency} from '@/constants/currency';
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from '@/hooks/redux';
 import {changeCurrency} from '@/redux/coinsSlice';
 
-const CustomLink = ({href, title}: {href?: string; title: string}) => {
-  return (
-    <Link href={href} underline="hover" color="inherit" sx={{mr: {xs: 2, sm: 1.1, md: 2}, mb: {xs: 4, sm: 0}}} variant="h6">
-      {title}
-    </Link>
-  );
-};
-
 const Navbar = () => {
   const {theme, changeTheme} = useThemeContext();
-  const [showDrawer, setShowDrawer] = useState(false);
   const currency = useSelector(state => state.coinsSlice.currency);
 
   const dispatch = useDispatch();
 
   const router = useRouter();
-
-  const handleDrawerToggle = () => {
-    setShowDrawer(prevState => !prevState);
-  };
 
   const handleChange = (event: SelectChangeEvent) => {
     dispatch(changeCurrency(event.target.value as Currency));
@@ -82,28 +55,9 @@ const Navbar = () => {
             <IconButton sx={{ml: 1}} onClick={changeTheme} color="inherit">
               {theme === 'dark' ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
-            {/* <IconButton sx={{display: {sx: 'flex', sm: 'none'}, ml: 1}} color="inherit" onClick={handleDrawerToggle}>
-              <Menu />
-            </IconButton> */}
           </Box>
         </Toolbar>
       </AppBar>
-      {/* <SwipeableDrawer
-        anchor="right"
-        variant="temporary"
-        hideBackdrop={true}
-        sx={{
-          display: {xs: 'flex', sm: 'none'},
-          width: '100%',
-          [`& .MuiDrawer-paper`]: {width: '100%', boxSizing: 'border-box'},
-        }}
-        open={showDrawer}
-        onClose={handleDrawerToggle}
-        onOpen={handleDrawerToggle}>
-        <Box sx={{display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
-          <CustomLink href="/" title="Home" />
-        </Box>
-      </SwipeableDrawer> */}
     </Box>
   );
 };

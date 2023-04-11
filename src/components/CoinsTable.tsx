@@ -14,6 +14,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  TextField,
   Typography,
   useMediaQuery,
   useTheme,
@@ -34,8 +35,10 @@ const CoinsTable = () => {
   const coins = useSelector(state => state.coinsSlice.coins);
   const dispatch = useDispatch();
 
+  const [searchText, setSearchText] = useState('');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [filteredCoins, setFilteredCoins] = useState<CoinDigest[]>([]);
   const [visibleCoins, setVisibleCoins] = useState<CoinDigest[]>([]);
 
   const tableRef = useRef<HTMLElement>(null);
@@ -44,6 +47,10 @@ const CoinsTable = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - coins.length) : 0;
+
+  const handleTextChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.currentTarget.value);
+  };
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -73,12 +80,38 @@ const CoinsTable = () => {
   useEffect(() => {
     const startIndex = page * rowsPerPage;
     const endIndex = page * rowsPerPage + rowsPerPage;
-    setVisibleCoins(coins.slice(startIndex, endIndex));
-  }, [coins, page, rowsPerPage]);
+    setVisibleCoins(filteredCoins.slice(startIndex, endIndex));
+  }, [filteredCoins, page, rowsPerPage]);
+
+  useEffect(() => {
+    const filterCoins = async (value: string) => {
+      const Fuse = (await import('fuse.js')).default;
+      const fuse = new Fuse(coins, {keys: ['name'], threshold: 0.3});
+      setFilteredCoins(fuse.search(value).map(result => result.item));
+    };
+
+    if (searchText) {
+      filterCoins(searchText);
+    } else {
+      setFilteredCoins(coins);
+    }
+  }, [coins, searchText]);
 
   return (
     <Box ref={tableRef} maxWidth={'md'} width={'100%'} sx={{pb: 10}}>
-      {visibleCoins.length > 0 && !loading ? (
+      <Typography variant="h3" sx={{my: 5, px: 2, textAlign: 'center'}}>
+        Today&apos;s Cryptocurrency Prices by Market Cap
+      </Typography>
+      <TextField
+        id="search-bar"
+        type="search"
+        placeholder="Search for a crypto currency"
+        variant="outlined"
+        fullWidth
+        sx={{mb: 2}}
+        onChange={handleTextChange}
+      />
+      {(visibleCoins.length > 0 || searchText) && !loading ? (
         <Paper sx={{width: '100%'}}>
           <TableContainer>
             <Table aria-label="coins table" size={isSmall ? 'small' : 'medium'} sx={{minWidth: 700}}>
@@ -106,7 +139,9 @@ const CoinsTable = () => {
                         </Grid>
                       </Grid>
                     </TableCell>
-                    <TableCell align="right">{getNumberWithCommas(coin.current_price)}</TableCell>
+                    <TableCell align="right">
+                      {CurrencySymbol[currency]} {getNumberWithCommas(coin.current_price)}
+                    </TableCell>
                     <TableCell align="right" sx={{color: coin.price_change_percentage_24h > 0 ? 'success.main' : 'error.main'}}>
                       {coin.price_change_percentage_24h > 0 && '+'}
                       {coin.price_change_percentage_24h.toFixed(2)}%
@@ -127,7 +162,7 @@ const CoinsTable = () => {
           <TablePagination
             rowsPerPageOptions={isSmall ? [10] : [5, 10, 20]}
             component="div"
-            count={coins.length}
+            count={filteredCoins.length}
             rowsPerPage={rowsPerPage}
             page={page}
             SelectProps={{
@@ -141,7 +176,7 @@ const CoinsTable = () => {
           />
         </Paper>
       ) : (
-        <LinearProgress sx={{width: '80%', mx:'10%', mt:10}} />
+        <LinearProgress sx={{width: '80%', mx: '10%', mt: 10}} />
       )}
     </Box>
   );

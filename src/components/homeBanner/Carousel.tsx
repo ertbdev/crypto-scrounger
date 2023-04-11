@@ -3,7 +3,7 @@ import {getNumberWithCommas} from '@/functions/getNumberWithCommas';
 import {useDispatch, useSelector} from '@/hooks/redux';
 import {fetchTrendingCoins} from '@/redux/coinsSlice';
 import CarouselItemContainer from '@/styles/styledComponents/CarouselItemContainer';
-import {Coin, CoinDigest} from '@/types/Coin';
+import {CoinDigest} from '@/types/Coin';
 import {Grid, Typography} from '@mui/material';
 import Image from 'next/image';
 import React, {useEffect} from 'react';

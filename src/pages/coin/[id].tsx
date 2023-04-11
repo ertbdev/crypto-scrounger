@@ -39,7 +39,7 @@ const CoinPage = () => {
   }
 
   return (
-    <Container disableGutters maxWidth={false} sx={{display: 'flex', flexDirection: 'column', py: '4rem', minWidth: 320, height: '100vh'}}>
+    <Container disableGutters maxWidth={false} sx={{display: 'flex', flexDirection: 'column', pt: '4.8rem', minWidth: 320, minHeight: '100vh'}}>
       <Toolbar />
       <Grid sx={{display: 'flex', flexDirection: {xs: 'column', md: 'row'}, height: '100vh'}}>
         <CoinDetails

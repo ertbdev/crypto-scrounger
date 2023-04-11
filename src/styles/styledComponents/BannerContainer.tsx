@@ -5,7 +5,7 @@ const BannerContainer = styled('div')({
   position: 'relative',
   flexDirection: 'column',
   height: 400,
-  width: '100vw',
+  width: '100%',
   minWidth: 320,
   justifyContent: 'center',
   alignItems: 'center',

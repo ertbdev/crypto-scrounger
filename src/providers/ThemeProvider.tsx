@@ -15,7 +15,6 @@ type ThemeContext = {
 const context = createContext<ThemeContext | null>(null);
 
 export default function ThemeProvider({children}: {children: JSX.Element}) {
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [mode, setMode] = useState<PaletteMode>('dark');
 
   const changeTheme = () => {
@@ -38,12 +37,6 @@ export default function ThemeProvider({children}: {children: JSX.Element}) {
     }),
     [mode],
   );
-
-  // useEffect(() => {
-  //   if (!mode) {
-  //     setMode(prefersDarkMode ? 'dark' : 'light');
-  //   }
-  // }, [mode, prefersDarkMode]);
 
   return (
     <context.Provider value={contextValue}>
