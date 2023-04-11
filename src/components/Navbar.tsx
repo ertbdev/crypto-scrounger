@@ -2,7 +2,6 @@ import {
   AppBar,
   Box,
   FormControl,
-  Grid,
   IconButton,
   InputLabel,
   Link,
@@ -55,12 +54,11 @@ const Navbar = () => {
       <AppBar
         component="nav"
         position="fixed"
-        sx={{px: {xs: 1, sm: 6, md: 15}, zIndex: theme => theme.zIndex.drawer + 1}}
+        sx={{minWidth: 320, px: {xs: 0, sm: 6, md: 15}, zIndex: theme => theme.zIndex.drawer + 1, backdropFilter: 'blur(10px)'}}
         color="transparent">
-        <Toolbar sx={{justifyContent: 'space-between'}}>
-          <Grid
+        <Toolbar sx={{justifyContent: 'space-between', height: '4.8rem'}}>
+          <Box
             display="flex"
-            alignItems="center"
             onClick={handleGoToHome}
             sx={{
               '&:hover': {
@@ -71,9 +69,9 @@ const Navbar = () => {
             <Typography variant="h3" color="primary.main">
               Scrounger
             </Typography>
-          </Grid>
-          <Grid display="flex" alignItems="center">
-            <FormControl sx={{m: 2, minWidth: 120}} size="small">
+          </Box>
+          <Box display="flex" alignItems={'center'}>
+            <FormControl sx={{m: 2, minWidth: {xl: 80, sm: 120}}} size="small">
               <InputLabel id="currency-input">Currency</InputLabel>
               <Select labelId="currency-input" id="currency-selector" value={currency} onChange={handleChange} label="Currency">
                 <MenuItem value={Currency.USD}>{Currency.USD}</MenuItem>
@@ -84,20 +82,20 @@ const Navbar = () => {
             <IconButton sx={{ml: 1}} onClick={changeTheme} color="inherit">
               {theme === 'dark' ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
-            <IconButton sx={{display: {sx: 'flex', sm: 'none'}, ml: 1}} color="inherit" onClick={handleDrawerToggle}>
+            {/* <IconButton sx={{display: {sx: 'flex', sm: 'none'}, ml: 1}} color="inherit" onClick={handleDrawerToggle}>
               <Menu />
-            </IconButton>
-          </Grid>
+            </IconButton> */}
+          </Box>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer
+      {/* <SwipeableDrawer
         anchor="right"
         variant="temporary"
         hideBackdrop={true}
         sx={{
           display: {xs: 'flex', sm: 'none'},
           width: '100%',
-          [`& .MuiDrawer-paper`]: {width: '100%', boxSizing: 'border-box', marginTop: '4.5rem'},
+          [`& .MuiDrawer-paper`]: {width: '100%', boxSizing: 'border-box'},
         }}
         open={showDrawer}
         onClose={handleDrawerToggle}
@@ -105,7 +103,7 @@ const Navbar = () => {
         <Box sx={{display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
           <CustomLink href="/" title="Home" />
         </Box>
-      </SwipeableDrawer>
+      </SwipeableDrawer> */}
     </Box>
   );
 };

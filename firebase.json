@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "crypto-scrounger",
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

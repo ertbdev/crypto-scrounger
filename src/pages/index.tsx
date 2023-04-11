@@ -7,9 +7,9 @@ const Home = () => {
     <Container
       disableGutters
       maxWidth={false}
-      sx={{display: 'flex', flexDirection: 'column', pt: '4.5rem', minWidth: 320, alignItems: 'center'}}>
+      sx={{display: 'flex', flexDirection: 'column', mt: '4.8rem', minWidth: 320, alignItems: 'center'}}>
       <HomeBanner />
-      <Typography variant="h3" sx={{my: 5, px:2, textAlign:'center'}}>
+      <Typography variant="h3" sx={{my: 5, px: 2, textAlign: 'center'}}>
         Today&apos;s Cryptocurrency Prices by Market Cap
       </Typography>
       <CoinsTable />

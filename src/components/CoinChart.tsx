@@ -1,5 +1,5 @@
 import {Currency} from '@/constants/currency';
-import {Box, Button, Grid, Typography, useMediaQuery, useTheme} from '@mui/material';
+import {Box, Button, Grid, useMediaQuery, useTheme} from '@mui/material';
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartOptions} from 'chart.js';

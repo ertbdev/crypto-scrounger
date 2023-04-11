@@ -28,6 +28,9 @@ export const typografy: TypographyOptions = {
       fontSize: '1rem',
     },
     '@media (min-width:320px)': {
+      fontSize: '1rem',
+    },
+    '@media (min-width:350px)': {
       fontSize: '1.2rem',
     },
     '@media (min-width:500px)': {
