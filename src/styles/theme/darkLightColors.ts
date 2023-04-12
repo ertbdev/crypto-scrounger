@@ -5,11 +5,11 @@ export const darkLightColors = (mode?: PaletteMode) => {
   const palette: PaletteOptions = {
     mode: mode,
     primary: {
-      main: mode === 'dark' ? '#0C9EE8' : '#0065FF',
+      main: mode === 'dark' ? '#AA52FF' : '#8000FF',
+      dark: '#6E00E6',
     },
     secondary: {
-      main: '#8000FF',
-      light: 'rgba(154,15,140,.54)',
+      main: mode === 'dark' ? '#3A173A ' : '#FFACFF8F',
     },
     background: {
       default: mode === 'dark' ? '#14161A' : '#FFF',

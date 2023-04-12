@@ -98,7 +98,7 @@ const CoinsTable = () => {
   }, [coins, searchText]);
 
   return (
-    <Box ref={tableRef} maxWidth={'md'} width={'100%'} sx={{pb: 10}}>
+    <Box ref={tableRef} maxWidth={'md'} width={'98%'} sx={{pb: 10}}>
       <Typography variant="h3" sx={{my: 5, px: 2, textAlign: 'center'}}>
         Today&apos;s Cryptocurrency Prices by Market Cap
       </Typography>
@@ -116,11 +116,19 @@ const CoinsTable = () => {
           <TableContainer>
             <Table aria-label="coins table" size={isSmall ? 'small' : 'medium'} sx={{minWidth: 700}}>
               <TableHead>
-                <TableRow sx={{backgroundColor: 'primary.main'}}>
-                  <TableCell align="left">Coin</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="right">24h Change</TableCell>
-                  <TableCell align="right">Market Cap</TableCell>
+                <TableRow sx={{backgroundColor: 'primary.dark'}}>
+                  <TableCell align="left" sx={{color: '#FFF'}}>
+                    Coin
+                  </TableCell>
+                  <TableCell align="right" sx={{color: '#FFF'}}>
+                    Price
+                  </TableCell>
+                  <TableCell align="right" sx={{color: '#FFF'}}>
+                    24h Change
+                  </TableCell>
+                  <TableCell align="right" sx={{color: '#FFF'}}>
+                    Market Cap
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

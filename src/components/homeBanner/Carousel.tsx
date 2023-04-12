@@ -34,13 +34,15 @@ const Carousel = () => {
       <CarouselItemContainer href={`/coin/${data.id}`}>
         <Image src={data.image} alt={data.name} height={80} width={80} />
         <Grid display="flex" alignItems="center" sx={{mt: 2}}>
-          <Typography variant="body1">{data.symbol} &nbsp;</Typography>
+          <Typography variant="body1" color="text.primary">
+            {data.symbol} &nbsp;
+          </Typography>
           <Typography color={profit ? 'success.main' : 'error.main'}>
             {profit && '+'}
             {data.price_change_percentage_24h.toFixed(2)}%
           </Typography>
         </Grid>
-        <Typography variant="subtitle1">
+        <Typography variant="subtitle1" color="text.primary">
           {CurrencySymbol[currency]} {getNumberWithCommas(data.current_price)}
         </Typography>
       </CarouselItemContainer>
@@ -48,7 +50,7 @@ const Carousel = () => {
   };
 
   return (
-    <Grid sx={{width: '100vw'}}>
+    <Grid sx={{width: '100%'}}>
       <AliceCarousel
         mouseTracking
         infinite
